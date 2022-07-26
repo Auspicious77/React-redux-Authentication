@@ -9,8 +9,10 @@ const jwt = require('jsonwebtoken')
 const {JWT_SECRET, MONGOURL} = require('./config/keys')
 const Todo = require('./models/Todos')
 
+// const JWT_SECRET = 'qwertyuiop'
+// const MONGOURL = 'mongodb+srv://Auspicious:qNAhbE8FykDe7MXJ@cluster0.6majn.mongodb.net/tododb?retryWrites=true&w=majority'
 
-
+ 
 mongoose.connect(MONGOURL,
     {
         useNewUrlParser: true,
@@ -128,7 +130,7 @@ if(process.env.NODE_ENV == 'production'){
     app.get('/', (req, res) => {
         app.use(express.static(path.resolve(__dirname, 'client', 'build')))
         res.sendFile(path.resolve(__dirname, 'client', 'build','index.html'))
-    })
+    }) 
 }
 
 
