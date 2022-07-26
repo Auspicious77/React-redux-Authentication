@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const PORT = 5000
-
+const cors = require('cors')
 const mongoose = require('mongoose')
 const User = require('./models/Users')
 const bcrypt = require('bcryptjs')
@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
     res.json({ message: 'Hello world' })
 })
 app.use(express.json())
+app.use(cors())
 
 const requireLogin = (req, res, next) => {
     const {authorization} = req.headers
