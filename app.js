@@ -9,8 +9,7 @@ const jwt = require('jsonwebtoken')
 const {JWT_SECRET, MONGOURL} = require('./config/keys')
 const Todo = require('./models/Todos')
 
-// const JWT_SECRET = 'qwertyuiop'
-// const MONGOURL = 'mongodb+srv://Auspicious:qNAhbE8FykDe7MXJ@cluster0.6majn.mongodb.net/tododb?retryWrites=true&w=majority'
+
 
  
 mongoose.connect(MONGOURL,
