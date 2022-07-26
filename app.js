@@ -6,12 +6,12 @@ const mongoose = require('mongoose')
 const User = require('./models/Users')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const {JWT_Secret, mongoUrl} = require('./config/keys')
+const {JWT_SECRET, MONGOURL} = require('./config/keys')
 const Todo = require('./models/Todos')
 
 
 
-mongoose.connect(mongoUrl,
+mongoose.connect(MONGOURL,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -31,7 +31,7 @@ const requireLogin = (req, res, next) => {
         return res.status(401).json({error: "You must be logged in"})
     }
     try{
-        const {userId} = jwt.verify(authorization, JWT_Secret)
+        const {userId} = jwt.verify(authorization, JWT_SECRET)
         req.user = userId
         next()
     }
@@ -88,7 +88,7 @@ app.post('/signin', async (req, res) => {
         //encript password
        const doMatch = await bcrypt.compare(password, user.password)
        if(doMatch){
-        const token = jwt.sign({userId: user._id}, JWT_Secret)
+        const token = jwt.sign({userId: user._id}, JWT_SECRET)
          res.status(201).json({token})
        }
        else{
